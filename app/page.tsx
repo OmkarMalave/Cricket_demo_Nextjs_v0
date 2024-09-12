@@ -1,101 +1,131 @@
-import Image from "next/image";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Trophy, Calendar, Clock } from "lucide-react"
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div className="space-y-6">
+      <h1 className="text-4xl font-bold text-green-800">Welcome to CricketPro</h1>
+      
+      <Tabs defaultValue="live" className="w-full">
+        <TabsList className="grid w-full grid-cols-3 bg-green-100">
+          <TabsTrigger value="live" className="data-[state=active]:bg-green-500 data-[state=active]:text-white">
+            <Trophy className="h-5 w-5 mr-2" />
+            Live Scores
+          </TabsTrigger>
+          <TabsTrigger value="upcoming" className="data-[state=active]:bg-green-500 data-[state=active]:text-white">
+            <Calendar className="h-5 w-5 mr-2" />
+            Upcoming
+          </TabsTrigger>
+          <TabsTrigger value="recent" className="data-[state=active]:bg-green-500 data-[state=active]:text-white">
+            <Clock className="h-5 w-5 mr-2" />
+            Recent
+          </TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="live">
+          <Card className="bg-white shadow-lg">
+            <CardHeader className="bg-green-500 text-white">
+              <CardTitle className="text-2xl">Live Scores</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-4">
+                <MatchItem 
+                  team1="India" 
+                  team2="Australia" 
+                  score1="287/5" 
+                  score2="(45.3 ov)" 
+                  status="Live" 
+                />
+                <MatchItem 
+                  team1="England" 
+                  team2="New Zealand" 
+                  score1="180/3" 
+                  score2="(30.0 ov)" 
+                  status="Live" 
+                />
+              </ul>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        
+        <TabsContent value="upcoming">
+          <Card className="bg-white shadow-lg">
+            <CardHeader className="bg-green-500 text-white">
+              <CardTitle className="text-2xl">Upcoming Matches</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-4">
+                <MatchItem 
+                  team1="South Africa" 
+                  team2="West Indies" 
+                  status="Tomorrow, 14:00 GMT" 
+                />
+                <MatchItem 
+                  team1="Pakistan" 
+                  team2="Sri Lanka" 
+                  status="23 Jul, 09:30 GMT" 
+                />
+              </ul>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        
+        <TabsContent value="recent">
+          <Card className="bg-white shadow-lg">
+            <CardHeader className="bg-green-500 text-white">
+              <CardTitle className="text-2xl">Recent Matches</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-4">
+                <MatchItem 
+                  team1="Australia" 
+                  team2="New Zealand" 
+                  status="AUS won by 3 wickets" 
+                />
+                <MatchItem 
+                  team1="India" 
+                  team2="England" 
+                  status="IND won by 5 runs" 
+                />
+              </ul>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+      
+      <Card className="bg-white shadow-lg">
+        <CardHeader className="bg-yellow-500 text-green-800">
+          <CardTitle className="text-2xl">Featured News</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-2">
+            <li>
+              <a href="#" className="text-green-700 hover:text-green-900 hover:underline">ICC announces new tournament format for 2024</a>
+            </li>
+            <li>
+              <a href="#" className="text-green-700 hover:text-green-900 hover:underline">Player spotlight: Rising stars to watch this season</a>
+            </li>
+            <li>
+              <a href="#" className="text-green-700 hover:text-green-900 hover:underline">Top 10 memorable moments from the last World Cup</a>
+            </li>
+          </ul>
+        </CardContent>
+      </Card>
     </div>
-  );
+  )
+}
+
+function MatchItem({ team1, team2, score1, score2, status }: { team1: string; team2: string; score1?: string; score2?: string; status: string }) {
+  return (
+    <li className="flex justify-between items-center bg-green-50 p-4 rounded-lg">
+      <div className="flex-1">
+        <div className="font-semibold text-green-800">{team1} vs {team2}</div>
+        {score1 && score2 && (
+          <div className="text-sm text-green-600">{score1} - {score2}</div>
+        )}
+      </div>
+      <div className="text-sm font-medium text-yellow-600">{status}</div>
+    </li>
+  )
 }
